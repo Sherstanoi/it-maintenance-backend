@@ -27,7 +27,6 @@ window.onload = function(){
         }
     });
 
-    // Настраиваем обработчики для кнопок операций - сохраняем выбранную операцию в ранее созданную переменную selectedOperation
     document.getElementById("btn_op_mult").onclick = function() { 
         if (a === '') return;
         selectedOperation = 'x';
@@ -44,7 +43,6 @@ window.onload = function(){
         if (a === '') return;
         selectedOperation = '/';
     }
-        // Очищаем все значения при нажатии на кнопку C (вешаем обработчик события click на кнопку С)
     document.getElementById("btn_op_clear").onclick = function() { 
         a = ''
         b = ''
@@ -52,17 +50,14 @@ window.onload = function(){
         expressionResult = ''
         outputElement.innerHTML = 0
     }
-        // Вычисляем результат при нажатии на = (вешаем обработчик события click на кнопку =)
+
     document.getElementById("btn_op_equal").onclick = function() { 
-        // Проверяем, что у нас есть оба числа и операция
         if (a === '' || b === '' || !selectedOperation)
             return
             
-        // Выполняем выбранную операцию - чтобы не плодить if, воспользуемся удобной и более наглядной функцией сравнения switch, которая на основе значения переданной переменной выполняет нужный кейс. В case указывается ожидаемое точное значение переменной (это может быть любое значение), а затем после : пишется код, который нужно выполнить в данном случае. Case проверяются последовательно, выход из switch происходит при попадании на break или если значение не совпало ни с чем.
         switch(selectedOperation) { 
             case 'x':
                 expressionResult = (+a) * (+b)
-                // обязательно пишется в конце действий case, чтобы выйти из switch, иначе продолжится сравнение case дальше
                 break;
             case '+':
                 expressionResult = (+a) + (+b)
@@ -73,17 +68,14 @@ window.onload = function(){
             case '/':
                 expressionResult = (+a) / (+b)
                 break;
-            // желательно (но не обязательно) всегда прописывать дефолтное поведение, в случае если в переменной окажется не перечисленное выше значение. в нашем случае это не нужно.
             default:
                 break;
         }
         
-        // Сохраняем результат и очищаем второе число, чтобы при новом вводе записывать значение нового числа в b
         a = expressionResult.toString()
         b = ''
         selectedOperation = null
 
-        // Показываем результат на экране
         outputElement.innerHTML = a
     }
 };
