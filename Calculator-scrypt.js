@@ -30,18 +30,27 @@ window.onload = function(){
     document.getElementById("btn_op_mult").onclick = function() { 
         if (a === '') return;
         selectedOperation = 'x';
+        outputElement.innerHTML = 0;
     }
     document.getElementById("btn_op_plus").onclick = function() { 
         if (a === '') return;
         selectedOperation = '+';
+        outputElement.innerHTML = 0;
     }
     document.getElementById("btn_op_minus").onclick = function() { 
         if (a === '') return;
         selectedOperation = '-';
+        outputElement.innerHTML = 0;
     }
     document.getElementById("btn_op_div").onclick = function() { 
         if (a === '') return;
         selectedOperation = '/';
+        outputElement.innerHTML = 0;
+    }
+        document.getElementById("btn_op_percent").onclick = function() { 
+        if (a === '') return;
+        selectedOperation = '%';
+        outputElement.innerHTML = 0;
     }
     document.getElementById("btn_op_clear").onclick = function() { 
         a = ''
@@ -68,6 +77,8 @@ window.onload = function(){
             case '/':
                 expressionResult = (+a) / (+b)
                 break;
+            case '%':
+                expressionResult = (+a) * ((+b)/100)
             default:
                 break;
         }
@@ -78,4 +89,27 @@ window.onload = function(){
 
         outputElement.innerHTML = a
     }
+
+    document.getElementById("btn_op_sign").onclick = function() {
+    if(!selectedOperation && a != '0' && a != '') {
+        if(a[0] === '-') {
+            a = a.slice(1);
+            outputElement.innerHTML = a;
+        }
+        else {
+            a = '-' + a;
+            outputElement.innerHTML = a;
+        }
+    }
+    else if(b != '0' && b != '') {
+       if(b[0] === '-') {
+            b = b.slice(1);
+            outputElement.innerHTML = b;
+        }
+        else {
+            b = '-' + b;
+            outputElement.innerHTML = b;
+        }
+    }
+}
 };

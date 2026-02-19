@@ -8,7 +8,13 @@
   display: inline-block;
   padding-top: 15px;
   padding-left: 20px;
+  margin-right: 25px;
   font-size: 1.5rem;
+}
+
+#lupa {
+  width: 25px;
+  height: 25px;
 }
 
 body {
